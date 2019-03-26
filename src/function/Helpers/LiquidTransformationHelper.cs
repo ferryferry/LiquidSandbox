@@ -42,10 +42,7 @@ namespace MasterData.Repositories.Helpers
             var deserializedObject =
                 JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonObject, new DictionaryConverter());
             
-            const string liquidTemplateText =
-                "[{% for manufacturer in value %}{\"name\":\"{{manufacturer.name}}\",\"address\":\"{{manufacturer.address}}\",\"postalCode\": \"{{manufacturer.postcode}}\",\"city\": \"{{manufacturer.city}}\",\"country\": \"{{manufacturer.country}}\",\"gln\": \"{{manufacturer.gln}}\",  \"originalId\": \"{{manufacturer.id}}\"}{% if forloop.last == false%},{% endif %}{% endfor %}]";
-            
-            var templateExample1 = Template.Parse(liquidTemplateText);
+            var templateExample1 = Template.Parse(liquidTemplate);
             return templateExample1.Render(Hash.FromDictionary(deserializedObject));
         }
     }
