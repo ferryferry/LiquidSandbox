@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Liquid Sandbox</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <nav class="navbar is-warning" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                Liquid Sandbox
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    </nav>
+    <section class="section">
+
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <div class="control">
+                        <textarea id="template" onchange="onTemplateChange()" class="textarea is-info" placeholder="Type here your Liquid template"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <div class="control">
+                        <textarea id="source" class="textarea is-primary"
+                            placeholder="Paste the json which you want to convert..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+
+                <div class="control">
+                    <textarea id="result" class="textarea" readonly>This content is readonly</textarea>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>
