@@ -1,10 +1,6 @@
 function onTemplateChange() {
     var template = document.getElementById("template").value;
     var source = document.getElementById("source").value;
-    console.log(template);
-    console.log(source);
-
-    console.log(JSON.stringify({ "json": source, "LiquidTemplate": template }));
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {

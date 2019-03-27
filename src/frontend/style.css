@@ -1,4 +1,18 @@
+.textarea {
+    box-shadow: 2px 2px 8px rgba(black, .3);
+    border-radius: 6px;
+    padding: 10px;
+}
+
 .nav-brand-icon {
     width: 28px;
     height: 28px;
+}
+
+.code {
+    font-family: monospace;
+}
+
+.main {
+    padding: 1.5rem 1.5rem;
 }

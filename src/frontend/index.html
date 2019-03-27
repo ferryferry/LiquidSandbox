@@ -12,49 +12,65 @@
 </head>
 
 <body>
-    <nav class="navbar is-warning" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item">
-                Liquid Sandbox
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
+            <a class="navbar-item" href="/">
+                <img src="./img/icon.png" height="1.75rem"><span style="margin-left:10px"><b>Liquid Sandbox</b></span>
             </a>
         </div>
     </nav>
-    <section class="section">
 
-        <div class="columns">
-            <div class="column">
-                <div class="field">
-                    <div class="control">
-                        <textarea id="template" onchange="onTemplateChange()" class="textarea is-info" placeholder="Type here your Liquid template"></textarea>
-                    </div>
-                </div>
+    <section class="hero is-light">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title">
+                    Sandbox for Liquid templates
+                </p>
+                <p class="subtitle">
+                    Trial and error
+                </p>
             </div>
         </div>
-
-        <div class="columns">
-            <div class="column">
-                <div class="field">
-                    <div class="control">
-                        <textarea id="source" class="textarea is-primary"
-                            placeholder="Paste the json which you want to convert..."></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-
-                <div class="control">
-                    <textarea id="result" class="textarea" readonly>This content is readonly</textarea>
-                </div>
-            </div>
-        </div>
-
     </section>
+
+    <section class="section main">
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <div class="control">
+                        <label for="template">Template:</label>
+                        <textarea id="template" onchange="onTemplateChange()" rows='10' class="textarea code"
+                            placeholder="Type here your Liquid template">The application is: "{{applicationName}}"</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <div class="control">
+                        <label for="source">Source Json:</label>
+                        <textarea id="source" class="textarea code" rows='10'
+                            placeholder="Paste the Json which you want to convert...">{ "applicationName": "Liquid Sandbox" }</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="control">
+                    <label for="result">Transformation output: (readonly)</label>
+                    <textarea id="result" class="textarea code" rows='10' readonly>The application is: "Liquid Sandbox"</textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Liquid Sandbox</strong> made with ❤️
+            </p>
+        </div>
+    </footer>
 </body>
 
 </html>
