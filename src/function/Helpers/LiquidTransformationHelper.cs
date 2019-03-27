@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DotLiquid;
 using Newtonsoft.Json;
@@ -16,32 +17,38 @@ namespace MasterData.Repositories.Helpers
         /// <returns>Transformed string</returns>
         public static string Transform(string json, string liquidTemplate)
         {
-            // Check if the jsonArray string is a jsonArray array
+            // Check if the json is a plain array
+            if (json.StartsWith("[") && !json.Contains("{"))
+            {
+                return TransformJsonArray<List<object>>(json, liquidTemplate);
+            }
+            
+            // Check if the json string is a json array
             if (json.StartsWith("["))
             {
-                return TransformJsonArray(json, liquidTemplate);
+                return TransformJsonArray<List<Dictionary<string, object>>>(json, liquidTemplate);
             }
 
             // If the json is a normal object transform the json object
             return TransformJsonObject(json, liquidTemplate);
         }
 
-        private static string TransformJsonArray(string jsonArray, string liquidTemplate)
+        private static string TransformJsonArray<T>(string jsonArray, string liquidTemplate)
         {
             var deserializedList =
-                JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(jsonArray, new DictionaryConverter());
-            
-            var item = new {content = deserializedList};
-            
-            var templateExample2 = Template.Parse(liquidTemplate);
-            return templateExample2.Render(Hash.FromAnonymousObject(item));
+                JsonConvert.DeserializeObject<T>(jsonArray, new DictionaryConverter());
+
+            var item = new { content = deserializedList };
+
+            var template = Template.Parse(liquidTemplate);
+            return template.Render(Hash.FromAnonymousObject(item));
         }
 
         private static string TransformJsonObject(string jsonObject, string liquidTemplate)
         {
             var deserializedObject =
                 JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonObject, new DictionaryConverter());
-            
+
             var templateExample1 = Template.Parse(liquidTemplate);
             return templateExample1.Render(Hash.FromDictionary(deserializedObject));
         }
