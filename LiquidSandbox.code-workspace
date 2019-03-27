@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "function",
+			"path": "src/function"
+		}
+	],
+	"settings": {}
+}
