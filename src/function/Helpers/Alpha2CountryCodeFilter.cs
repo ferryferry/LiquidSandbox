@@ -15,8 +15,15 @@ namespace MasterData.Repositories.Helpers
                 return "";
             
             // If is Greece (EL) is used in the EU to identify Greece.
+            // http://publications.europa.eu/code/pdf/370000en.htm
             if(alpha2CountryCode.Equals("EL")){
                 return Countries.GetCountryByAlpha2("GR").ShortName;
+            }
+            
+            // If is United Kingdom (UK) is used in the EU to identify United Kingdom.
+            // http://publications.europa.eu/code/pdf/370000en.htm
+            if(alpha2CountryCode.Equals("UK")){
+                return Countries.GetCountryByAlpha2("GB").ShortName;
             }
 
             // Get a country by ISO-3166-1 Alpha2 code.
