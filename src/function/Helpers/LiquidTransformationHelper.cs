@@ -58,6 +58,7 @@ namespace MasterData.Repositories.Helpers
         {
             var template = Template.Parse(liquidTemplate);
             Template.RegisterFilter(typeof(ExpirationCalculationFilter));
+            Template.RegisterFilter(typeof(Alpha2CountryCodeFilter));
             return template.Render(hash);
         }
     }
