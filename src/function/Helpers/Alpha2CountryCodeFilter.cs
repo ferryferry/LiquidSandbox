@@ -14,8 +14,14 @@ namespace MasterData.Repositories.Helpers
             if(string.IsNullOrWhiteSpace(alpha2CountryCode) || string.IsNullOrEmpty(alpha2CountryCode))
                 return "";
             
+            // If is Greece (EL) is used in the EU to identify Greece.
+            if(alpha2CountryCode.Equals("EL")){
+                return Countries.GetCountryByAlpha2("GR").ShortName;
+            }
+
             // Get a country by ISO-3166-1 Alpha2 code.
             var foundCountry = Countries.GetCountryByAlpha2(alpha2CountryCode);
+
             return foundCountry == null ? "" : foundCountry.ShortName;
         }
     }
