@@ -39,9 +39,9 @@ namespace MasterData.Repositories.Helpers
                 JsonConvert.DeserializeObject<T>(jsonArray, new DictionaryConverter());
 
             var item = new { content = deserializedList };
+            var hash = Hash.FromAnonymousObject(item);
 
-            var template = Template.Parse(liquidTemplate);
-            return template.Render(Hash.FromAnonymousObject(item));
+            return RenderTemplate(liquidTemplate, hash);
         }
 
         private static string TransformJsonObject(string jsonObject, string liquidTemplate)
@@ -49,8 +49,16 @@ namespace MasterData.Repositories.Helpers
             var deserializedObject =
                 JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonObject, new DictionaryConverter());
 
-            var templateExample1 = Template.Parse(liquidTemplate);
-            return templateExample1.Render(Hash.FromDictionary(deserializedObject));
+            var hash = Hash.FromDictionary(deserializedObject);
+
+            return RenderTemplate(liquidTemplate, hash);
+        }
+
+        private static string RenderTemplate(string liquidTemplate, Hash hash) 
+        {
+            var template = Template.Parse(liquidTemplate);
+            Template.RegisterFilter(typeof(ExpirationCalculationFilter));
+            return template.Render(hash);
         }
     }
 }
