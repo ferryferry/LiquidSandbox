@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +13,7 @@ namespace LiquidTransformation
     public static class LiquidTransformation
     {
         [FunctionName("LiquidTransformation")]
-        public static async Task<IActionResult> Run(
+        public static async Task<IActionResult> TransformJson(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -22,6 +21,13 @@ namespace LiquidTransformation
 
             var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             var liquidTransformationProperties = JsonConvert.DeserializeObject<LiquidTransformationProperties>(requestBody);
+
+            if(string.IsNullOrEmpty(liquidTransformationProperties.Json) || string.IsNullOrWhiteSpace(liquidTransformationProperties.Json))
+                return new BadRequestObjectResult("Specified Json is empty!");
+
+            if(string.IsNullOrEmpty(liquidTransformationProperties.LiquidTemplate) || string.IsNullOrWhiteSpace(liquidTransformationProperties.LiquidTemplate))
+                return new BadRequestObjectResult("Specified Liquid template is empty!");
+                
 
             var transformedJson = LiquidTransformationHelper.Transform(liquidTransformationProperties.Json, liquidTransformationProperties.LiquidTemplate);
 
