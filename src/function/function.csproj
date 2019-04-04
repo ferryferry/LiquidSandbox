@@ -1,9 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Aliencube.AzureFunctions.Extensions.Configuration.AppSettings" Version="1.0.1" />
+    <PackageReference Include="Aliencube.AzureFunctions.Extensions.OpenApi" Version="1.4.2" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
     <PackageReference Include="Bia.Countries" Version="3.0.0" />
     <PackageReference Include="DotLiquid" Version="2.0.298" />
